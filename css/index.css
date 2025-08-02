@@ -786,7 +786,7 @@ body{
 
 .hero-image .eye {
   position: absolute;           
-  width: 43vh;                   
+  width: 42vh;                   
   height: auto;
   pointer-events: none;        
   transition: transform 0.15s ease-out;
@@ -830,4 +830,5 @@ body{
 }
 
 }
+
 
