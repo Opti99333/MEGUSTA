@@ -171,11 +171,12 @@ document.addEventListener('mousemove', e => {
     const dy = e.clientY - centerY;
 
     const angle = Math.atan2(dy, dx);
-    const radius = 16;  
+    const radius = 15;  
 
     const moveX = Math.cos(angle) * radius;
     const moveY = Math.sin(angle) * radius;
 
     eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
   });
+
 });
