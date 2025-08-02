@@ -796,12 +796,12 @@ body{
 
 .hero-image .eye-left {
   top: 4%;                     
-  left: 37%;                   
+  left: 38%;                   
 }
 
 .hero-image .eye-right {
   top: 4%;
-  left: 37%;
+  left: 38%;
 }
 
 @media (max-width:1440px) {
@@ -828,4 +828,5 @@ body{
   top: 4.5%;
   left: 32.5%;
 }
+
 }
