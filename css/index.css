@@ -795,12 +795,12 @@ body{
 
 
 .hero-image .eye-left {
-  top: 4%;                     
+  top: 4.5%;                     
   left: 38%;                   
 }
 
 .hero-image .eye-right {
-  top: 4%;
+  top: 4.5%;
   left: 38%;
 }
 
@@ -830,3 +830,4 @@ body{
 }
 
 }
+
