@@ -1,0 +1,1032 @@
+/* ------------------------ */
+/* 1. Сбросы и базовые стили */
+/* ------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+ul[class], ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+body, h1, h2, h3, h4, p,
+ul[class], ol[class], li,
+figure, figcaption,
+blockquote, dl, dd {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+
+.bg-paper {
+  background: url('/assets/paper-texture.jpg') center/cover no-repeat;
+}
+
+
+.sketch-header {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 0;
+}
+
+.sketch-header::before {
+  content: "";
+  position: absolute;
+  top: -8px;    left: -8px;
+  right: -8px;  bottom: -8px;
+  border: 2px dashed rgba(0,0,0,0.7);
+  transform: rotate(-1.2deg);
+  pointer-events: none;
+}
+
+
+@keyframes swing {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(2deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.sketch-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 5rem;
+  color: #333;
+  animation: swing 4s ease-in-out infinite;
+  text-shadow:
+    1px 1px 0 rgba(255,255,255,0.8),
+   -1px -1px 0 rgba(255,255,255,0.8);
+}
+
+.sketch-subtitle {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.5rem;
+  color: #FF3333;
+  animation: swing 4s ease-in-out infinite;
+  text-shadow:
+    1px 1px 0 rgba(255,255,255,0.8),
+   -1px -1px 0 rgba(255,255,255,0.8);
+}
+
+@keyframes pop {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50%      { transform: scale(1.1) rotate(1deg); }
+}
+
+
+@keyframes jitter {
+  0%,100% { transform: translate(0,0) rotate(0deg); }
+  20%     { transform: translate(-2px,1px) rotate(-1deg); }
+  40%     { transform: translate(1px,-2px) rotate(1deg); }
+  60%     { transform: translate(-1px,2px) rotate(-1deg); }
+  80%     { transform: translate(2px,-1px) rotate(1deg); }
+}
+
+.btn-sketch {
+  position: relative;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.6rem;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;       
+  animation: pop 6s ease-in-out infinite;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-sketch::before {
+  content: "";
+  position: absolute;
+  top: -8px; left: -8px;
+  right: -8px; bottom: -8px;
+  transform: rotate(-2deg);
+  pointer-events: none;
+}
+
+.btn-sketch::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('/assets/scribble.png') center/cover no-repeat;
+  opacity: 0.2;
+  pointer-events: none;
+  animation: jitter 3s linear infinite;
+}
+
+.btn-sketch:hover {
+  transform: scale(1.15) rotate(2deg);
+}
+
+
+@keyframes swing-icon {
+  0%,100%   { transform: translateY(0) rotate(0deg); }
+  25%,75%   { transform: translateY(-3px) rotate(-2deg); }
+  50%       { transform: translateY(0) rotate(0deg); }
+}
+
+.anim-icon {
+  display: inline-block;
+  animation: swing-icon 3s ease-in-out infinite;
+}
+
+
+.hover-scribble {
+  position: relative;
+  z-index: 0;
+}
+
+.hover-scribble::after {
+  content: "";
+  position: absolute;
+  top:    -40px;
+  left:   -40px;
+  right:  -40px;
+  bottom: -40px;
+  background: url('/assets/scribble-outline.png')
+              no-repeat center/contain;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.6s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hover-scribble:hover::after {
+  clip-path: inset(0 0 0 0);
+}
+
+.hover-scribble-icon{
+  position: relative;
+  z-index: 0;
+}
+
+.hover-scribble-icon::after{
+   content: "";
+  position: absolute;
+  top:    -2.2vh;
+  left:   -2.2vh;
+  right:  -2.2vh;
+  bottom: -2.2vh;
+  background: url('/assets/scribble-outline.png')
+              no-repeat center/contain;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.3s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hover-scribble-icon:hover::after {
+  clip-path: inset(0 0 0 0);
+}
+
+.btn-sketch.hover-scribble::after {
+  top:    -50px;
+  left:   -30px;
+  right:  -8px;
+  bottom: -8px;
+  background-size: 75%;
+  opacity: 100;
+  padding: 100px;
+}
+
+.gallery-img {
+  width: 95%;
+  height: auto;
+  display: block;
+  border-radius: 30px;      
+  overflow: hidden;         
+  position: relative;
+  z-index: 1;
+}
+
+
+.gallery-img-hero {
+  width: 50vh;   
+  height: 50vh;
+  display: block;
+  position: relative;
+  z-index: 1;      
+}
+
+.gallery-item {
+  position: relative;
+  overflow: visible; 
+  display: inline-block;
+}
+
+.gallery-item img {
+  display: block;
+  width: 97%;
+  height: auto;
+  position: relative;
+  z-index: 1;       
+}
+
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  top:    -12px;    
+  left:   -25px;
+  right:  -12px;
+  bottom: -12px;
+  background: url('/assets/Picture-outline.png') no-repeat center/contain;
+  background-size: 105%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gallery-img,
+.gallery-img-hero {
+  transition: none;
+}
+
+.gallery-img:hover,
+.gallery-img-hero:hover {
+  transform: none;
+}
+
+
+.gallery-item {
+  transition: transform 0.3s ease-in-out;
+  transform-origin: center center;
+}
+
+
+.gallery-item:hover {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+
+@keyframes swing-hero {
+  0%,100% { transform: rotate(0deg); }
+  25%     { transform: rotate(1deg); }
+  50%     { transform: rotate(0deg); }
+  75%     { transform: rotate(-1deg); }
+}
+
+@keyframes swap-out {
+  0%   { transform: scale(1)    rotate(0deg); opacity: 1; }
+  100% { transform: scale(0.7)  rotate(-10deg); opacity: 0; }
+}
+@keyframes swap-in {
+  0%   { transform: scale(0.7)  rotate(10deg);  opacity: 0; }
+  100% { transform: scale(1)    rotate(0deg);  opacity: 1; }
+}
+
+
+#hero-img {
+  animation: swing-hero 4s ease-in-out infinite;
+}
+
+
+#hero-img.swap-out {
+  animation:
+    swap-out 0.3s ease-in forwards,
+    swing-hero 4s ease-in-out infinite;
+}
+
+#hero-img.swap-in {
+  animation:
+    swap-in 0.3s ease-out forwards,
+    swing-hero 4s ease-in-out infinite;
+}
+
+.bio-slider-section {
+  font-family: 'Permanent Marker', cursive;
+  
+}
+
+.bio-text {
+  flex: 1;
+}
+.bio-text h3 {
+  margin-bottom: 0.5rem;
+  font-size: 3rem;
+  color: #FF3333;
+  margin-top: 3rem;
+}
+.bio-text p {
+  line-height: 1.4;
+  font-size: 1.8rem;
+  color: black;
+}
+
+
+.bio-img-wrapper {
+  position: relative;
+}
+.bio-img-wrapper img {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  position: relative;
+  z-index: 1;
+  border: 5px solid black;
+}
+.bio-img-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -8px; left: -8px;
+  right: -8px; bottom: -8px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+.bio-scale {
+  position: relative;
+  margin: 1.5rem auto 0;
+  width: 200px;    
+  height: 4px;
+}
+
+
+.bio-scale-line {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  border-top: 2px dashed #333;
+}
+
+
+.bio-scale-marker {
+  position: absolute;
+  top: 50%;
+  width: 14px; height: 14px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.bio-scale-marker[data-index="0"] { left: 0%; }
+.bio-scale-marker[data-index="1"] { left: 50%; }
+.bio-scale-marker[data-index="2"] { left: 100%; }
+
+
+.bio-scale-marker.active {
+  background: #333;
+}
+
+.bio-slider-section{
+  padding-top: 10rem;
+}
+
+.bio-card {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 5px solid black;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+.bio-card:hover {
+  transform: translateY(-5px);
+}
+
+
+.bio-swiper .swiper-pagination {
+  position: relative;
+  bottom: 0;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.bio-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #FF3333;
+  opacity: 0.4;
+  margin: 0 6px !important;
+  transition: opacity 0.3s;
+}
+.bio-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #FF3333;
+  width: 2rem;
+  height: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 1.5rem;
+}
+
+.bio-slider-section .swiper {
+  padding: 2rem 0;
+}
+
+@keyframes breathe {
+  0%, 100%   { transform: scale(1); }
+  50%        { transform: scale(1.02); }
+}
+.bio-card {
+ animation: float-slide 8s ease-in-out infinite;
+}
+
+@keyframes float-img {
+  0%, 100%   { transform: translateY(0) rotate(0deg); }
+  25%        { transform: translateY(-5px) rotate(1deg); }
+  75%        { transform: translateY(5px) rotate(-1deg); }
+}
+.bio-img-wrapper img {
+  animation: float-img 8s ease-in-out infinite;
+}
+
+@keyframes float-slide {
+  0%, 100%   { transform: translateY(0) rotate(0deg); }
+  25%        { transform: translateY(-2px) rotate(0.5deg); }
+  75%        { transform: translateY(3px) rotate(-0.5deg); }
+}
+
+@keyframes tilt {
+  0%, 100%   { transform: skew(0deg); }
+  50%        { transform: skew(2deg); }
+}
+.bio-text h3 {
+  display: inline-block;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.bio-text p{
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.gusta-slider-section {
+  padding: 0.5rem 0;           
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  background: white;
+  overflow: hidden;
+}
+
+.gusta-track {
+  display: inline-flex;
+  will-change: transform;
+  animation: scroll-gusta 15s linear infinite;
+}
+
+.gusta-item {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2rem;                 
+  color: #FF3333;
+  text-shadow:
+    1px 1px 0 rgba(255,255,255,0.8),
+   -1px -1px 0 rgba(255,255,255,0.8);
+  margin: 0 1.5rem;                
+  white-space: nowrap;
+}
+
+@keyframes scroll-gusta {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.dexscreener-section {
+  position: relative;
+  padding: 3rem 1rem;
+  overflow: visible;
+  z-index: 1;
+}
+
+
+.gusta-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3rem;
+  color: #FF3333;
+  margin-bottom: 1.5rem;
+  animation: swing 4s ease-in-out infinite;
+}
+
+
+.dexscreener-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px dashed #333;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  padding: 0.5rem;
+  margin: 0 auto;
+  max-width: 1500px;
+}
+
+
+.dexscreener-card::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: -10px; left: -10px;
+  right: -10px; bottom: -10px;
+  background: url('/assets/scribble-outline.png') center/contain no-repeat;
+  opacity: 0.15;
+  transform: rotate(-1deg);
+}
+
+
+#dexscreener-embed {
+  position: relative;
+  width: 100%;
+ 
+  padding-bottom: 60%;
+}
+
+@media (min-width: 1400px) {
+  #dexscreener-embed {
+    padding-bottom: 45%;
+  }
+}
+
+#dexscreener-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.sketch-title-small {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3rem;
+  color: #FF3333;
+  margin-bottom: 2rem;
+  animation: swing 4s ease-in-out infinite;
+}
+
+.how-to-buy-section {
+  position: relative;
+  padding: 3rem 1rem;
+  background: rgba(255,255,255,0.05);
+  overflow: visible;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.step-card {
+  position: relative;
+  flex: 1 1 260px;
+  max-width: 300px;
+  background: rgba(255,255,255,0.1);
+  border: 2px dashed #333;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  cursor: pointer;
+}
+.step-card:hover {
+  transform: translateY(-8px) rotate(-1deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+.step-card.active {
+  border-color: #FF3333;
+  background: rgba(255,255,255,0.2);
+}
+
+.step-number {
+  position: absolute;
+  top: -1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: #333;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.6rem;
+  padding: 0.4rem 0.8rem;
+  border: 2px dashed #333;
+  border-radius: 50%;
+}
+
+.step-card h3 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.8rem;
+  margin: 1rem 0 0.5rem;
+  color: #333;
+}
+.step-card p {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #222;
+}
+
+.progress-container {
+  position: relative;
+  margin: 3rem auto 0;
+  width: 80%;
+  max-width: 600px;
+  height: 4px;
+}
+.progress-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 2px dashed #333;
+  transform: translateY(-50%);
+}
+
+body{
+  overflow-x: hidden;
+}
+
+.progress-markers {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.progress-marker {
+  width: 16px; height: 16px;
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.progress-marker.active {
+  background: #FF3333;
+  transform: translateY(-50%) scale(1.2);
+  animation: breathe 1.5s ease-in-out infinite;
+}
+
+.how-to-buy-section {
+  font-family: 'Open Sans', sans-serif;
+  background: rgba(255,255,255,0.05);
+  padding: 3rem 1rem;
+  overflow: visible;
+}
+.how-to-buy-section h2,
+.how-to-buy-section h3,
+.how-to-buy-section .step-number {
+  font-family: 'Permanent Marker', cursive;
+}
+
+
+.steps-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.step-card {
+  position: relative;
+  flex: 1 1 260px;
+  max-width: 300px;
+  background: rgba(255,255,255,0.1);
+  border: 2px dashed #333;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  cursor: pointer;
+}
+.step-card:hover {
+  transform: translateY(-8px) rotate(-1deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+.step-card.active {
+  border-color: #FF3333;
+  background: rgba(255,255,255,0.2);
+}
+
+
+.step-number {
+  position: absolute;
+  top: -1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: #333;
+  font-size: 1.6rem;
+  padding: 0.4rem 0.8rem;
+  border: 2px dashed #333;
+  border-radius: 50%;
+}
+
+.how-to-buy-section .btn-sketch {
+
+}
+
+
+.ca-block small {
+  font-family: 'Open Sans', sans-serif;
+  color: #555;
+}
+
+.how-to-buy-section {
+  font-family: 'Open Sans', sans-serif !important;
+}
+.how-to-buy-section h2,
+.how-to-buy-section h3,
+.how-to-buy-section .step-number {
+  font-family: 'Permanent Marker', cursive !important;
+}
+
+
+.step-card {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border: 3px dashed #333;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.step-card:hover,
+.step-card.active {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  border-color: #FF3333;
+}
+
+
+.progress-container {
+  margin-top: 2rem;  
+}
+.progress-line { top: 50%; }
+.progress-markers { margin-top: -8px; } 
+
+.hero-image{
+  transform: scale(1.3);
+  padding-bottom: 10vh;
+}
+
+.hero-image {
+  position: relative;           
+}
+
+.hero-image .eye {
+  position: absolute;           
+  width: 43vh;                   
+  height: auto;
+  pointer-events: none;        
+  transition: transform 0.15s ease-out;
+  z-index: 2;
+}
+
+
+.hero-image .eye-left {
+  top: 4%;                     
+  left: 37%;                   
+}
+
+.hero-image .eye-right {
+  top: 4%;
+  left: 37%;
+}
+
+@media (max-width:1440px) {
+  
+.hero-image .eye-left {
+  top: 4%;                     
+  left: 33%;                   
+}
+
+.hero-image .eye-right {
+  top: 4%;
+  left: 33%;
+}
+}
+
+@media (min-width:2560px) {
+  
+.hero-image .eye-left {
+  top: 4.5%;                     
+  left: 33.5%;                   
+}
+
+.hero-image .eye-right {
+  top: 4.5%;
+  left: 32.5%;
+}
+}
+
+@media (min-width:1920px) and (min-height:1200px) {
+.hero-image .eye-left {
+  top: 4%;                     
+  left: 31.5%;                   
+}
+
+.hero-image .eye-right {
+  top: 4%;
+  left: 30.5%;
+}
+}
+
+
+@media (max-width: 768px) {
+  /* Заголовок */
+  .sketch-header {
+    padding: 2rem 1rem;
+  }
+  .sketch-title {
+    font-size: 3rem;           /* уменьшили с 5rem */
+  }
+  .sketch-subtitle {
+    font-size: 1.8rem;         /* уменьшили с 2.5rem */
+  }
+
+  /* Кнопки */
+  .btn-sketch {
+    font-size: 1.8rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  /* Герой-секция */
+  .hero-image {
+    transform: none;           /* убрали масштаб */
+    padding-bottom: 5vh;
+  }
+  .gallery-img-hero {
+    width: 80vw;
+    height: auto;
+  }
+  .hero-image .eye {
+    width: 12vw;               /* масштабируем по ширине экрана */
+  }
+  .hero-image .eye-left {
+    top: 35%;
+    left: 40%;
+  }
+  .hero-image .eye-right {
+    top: 35%;
+    left: 60%;
+  }
+
+  /* Галерея мемов */
+  .d-flex.justify-content-center.gap-5.mb-5 {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .gallery-item {
+    width: calc(50% - 0.5rem);
+    margin-bottom: 1rem;
+  }
+
+  /* Бегущая строка */
+  .gusta-item {
+    font-size: 1.2rem;
+    margin: 0 0.8rem;
+  }
+
+  /* Bio-слайдер */
+  .bio-slide .bio-card {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .bio-text h3 {
+    font-size: 2rem;
+  }
+  .bio-text p {
+    font-size: 1.2rem;
+  }
+
+  /* Шаги покупки */
+  .steps-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .step-card {
+    width: 100%;
+    max-width: none;
+  }
+  .step-card h2 {
+    font-size: 1.5rem;
+  }
+  .step-card h3 {
+    font-size: 1rem;
+  }
+
+  /* How to buy — кнопка и CA */
+  .how-to-buy-section .btn-sketch {
+    font-size: 1.8rem;
+    padding: 0.6rem 1.2rem;
+  }
+  .ca-block h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* =========================== */
+/* Extra small phones (<576px) */
+/* =========================== */
+@media (max-width: 576px) {
+  .sketch-title {
+    font-size: 2.5rem;
+  }
+  .sketch-subtitle {
+    font-size: 1.5rem;
+  }
+  .btn-sketch {
+    font-size: 1.6rem;
+    padding: 0.5rem 1rem;
+  }
+  .gusta-item {
+    font-size: 1rem;
+    margin: 0 0.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  /* 1) Шапка: переводим .d-flex в колонку */
+  .sketch-header {
+    padding: 2rem 1rem;
+  }
+  .sketch-header .d-flex {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  /* Кнопка BUY и иконки немного отступают */
+  .sketch-header .btn-sketch {
+    margin-bottom: 0.5rem;
+  }
+  .sketch-header .hover-scribble-icon {
+    margin-bottom: 0.3rem;
+  }
+
+  /* 2) Заголовки чуть помельче */
+  .sketch-title {
+    font-size: 3rem !important;
+  }
+  .sketch-subtitle {
+    font-size: 1.8rem !important;
+  }
+
+  /* 3) Герой-секция: центрируем, убираем scale и подгоняем размер */
+  .hero-image {
+    transform: none !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding-bottom: 5vh;
+  }
+
+  .gallery-img-hero {
+    width: 70vw !important;
+    height: auto;
+  }
+  /* Глаза уменьшаем и подгоняем позиции */
+  .hero-image .eye {
+    width: 60vw !important;
+  }
+  .hero-image .eye-left {
+    top: 3.5% !important;
+    left: 18% !important;
+  }
+  .hero-image .eye-right {
+    top: 3% !important;
+    left: 18% !important;
+  }
+}
+
+@media (min-width:3840px) {
+
+.hero-image .eye {
+  position: absolute;           
+  width: 70vh;                   
+  height: auto;
+  pointer-events: none;        
+  transition: transform 0.15s ease-out;
+  z-index: 2;
+}
+
+.hero-image .eye-left {
+  top: -4.5%;                     
+  left: 5%;                   
+}
+
+.hero-image .eye-right {
+  top: -5%;
+  left: -5%;
+}
+}
