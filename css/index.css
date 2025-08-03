@@ -796,12 +796,12 @@ body{
 
 .hero-image .eye-left {
   top: 4%;                     
-  left: 37%;                   
+  left: 38%;                   
 }
 
 .hero-image .eye-right {
   top: 4%;
-  left: 37%;
+  left: 38%;
 }
 
 @media (max-width:1440px) {
@@ -1021,12 +1021,16 @@ body{
 }
 
 .hero-image .eye-left {
-  top: -4.5%;                     
+  top: 4%;                     
   left: 5%;                   
 }
 
 .hero-image .eye-right {
-  top: -5%;
-  left: -5%;
+  top: 4%;
+  left: -6%;
+}
+
+.hero-image{
+  padding-top: 5vh;
 }
 }
